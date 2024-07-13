@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Header from './Header.jsx';
+import {createRoot} from 'react-dom/client';
 
 const App = () => {
   return (
     <div className='container'>
       <Header/>
-      <div className="container-view">Some activities should be here</div>
+      <div className="container-view">Some actvities should be here</div>
     </div>
   );
 };
 
-ReactDOM.render(<App/>, document.getElementById('app'));
-
-export default App;
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<App/>);
