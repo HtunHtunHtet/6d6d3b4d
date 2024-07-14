@@ -9,10 +9,10 @@ const Navigation = () => {
         <nav>
             <ul>
                 <li className={location.pathname === '/' ? 'active-link' : ''}>
-                    <Link to="/">All Call</Link>
+                    <Link to="/">All Calls</Link>
                 </li>
                 <li className={location.pathname === '/archived-call' ? 'active-link' : ''}>
-                    <Link to="/archived-call">Archived Call</Link>
+                    <Link to="/archived-call">Archived Calls</Link>
                 </li>
             </ul>
         </nav>

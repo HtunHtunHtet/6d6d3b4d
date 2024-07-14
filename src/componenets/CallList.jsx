@@ -14,17 +14,34 @@ const CallList = ({ showArchived }) => {
     const [archiveModal, setArchiveModal] = useState(false);
     const [archiveAllModal, setArchiveAllModal] = useState(false);
     const [selectedCall, setSelectedCall] = useState(null);
+    const [groupedCalls, setGroupedCalls] = useState({});
 
-    useEffect(() => {
+
+    useEffect( () => {
         updateCallList();
     }, [showArchived]);
 
-    const updateCallList =  () => {
-        fetchAllCalls().then(data => {
-            const filteredCalls = showArchived ? data.filter(call => call.is_archived) : data.filter(call => !call.is_archived);
-            setCalls(filteredCalls);
-        });
-    }
+    const updateCallList = async () => {
+        const data = await fetchAllCalls();
+        const filteredCalls = showArchived ? data.filter(call => call.is_archived) : data.filter(call => !call.is_archived);
+        setCalls(filteredCalls);
+        const grouped = filteredCalls.reduce((acc, call) => {
+            const dateOptions = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+
+            const date = new Date(call.created_at).toLocaleDateString('en-US', dateOptions);
+            if (!acc[date]) {
+                acc[date] = [];
+            }
+
+            acc[date].push(call);
+            return acc;
+        }, {});
+        setGroupedCalls(grouped);
+    };
 
     const handleDetailModal = (call) => {
         setSelectedCall(call);
@@ -56,29 +73,36 @@ const CallList = ({ showArchived }) => {
 
     return (
         <div className="container-view">
-            <a href="#" className="archive-all-btn" onClick={handleArchiveAllModal}>
-                <FaArchive /> {' '}
-                {showArchived ? 'Unarchived' : 'Archive'} calls
-            </a>
+            {(calls !== null && calls.length > 0) && (
+                <a href="#" className="archive-all-btn" onClick={handleArchiveAllModal}>
+                    <FaArchive/> {' '}
+                    {showArchived ? 'Unarchived' : 'Archive'} calls
+                </a>
+            )}
 
-            {calls ? (
-                calls.length > 0 ? (
-                    <div className="cards-container">
-                        {calls.map(call => (
-                            <CallCard
-                                key={call.id}
-                                call={call}
-                                onSelect={() => handleDetailModal(call)}
-                                onSelectArchive={() => handleArchiveModal(call)}
-                            >
-                                {showArchived ? <BiArchiveOut size="1.5em"/> : <BiArchiveIn size="1.5em"/>}
-                            </CallCard>
-                        ))}
+            {calls === null ? (
+                <Loading/>
+            ) : Object.keys(groupedCalls).length > 0 ? (
+                Object.entries(groupedCalls).map(([date, callsGroup]) => (
+                    <div key={date}>
+                        <div className='date-container'>----- {date} -----</div>
+                        <div className="cards-container">
+                            {callsGroup.map(call => (
+                                <CallCard
+                                    key={call.id}
+                                    call={call}
+                                    onSelect={() => handleDetailModal(call)}
+                                    onSelectArchive={() => handleArchiveModal(call)}
+                                >
+                                    {showArchived ? <BiArchiveOut size="1.5em"/> : <BiArchiveIn size="1.5em"/>}
+                                </CallCard>
+                            ))}
+                        </div>
                     </div>
-                ) : (
-                    <p style={{textAlign: "center"}}>No {showArchived ? 'Archived' : 'Active'} Calls</p>
-                )
-            ) : <Loading/>}
+                ))
+            ) : (
+                <p style={{textAlign: "center"}}>No {showArchived ? 'Archived' : 'Active'} Calls</p>
+            )}
 
             {detailModal && (
                 <DetailModal

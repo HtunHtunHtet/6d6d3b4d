@@ -21,7 +21,9 @@
 
 #app .container-view {
   padding: 20px;
-  height: 40em;
+  max-height: 39em;
+  min-height: 39em;
+  overflow-y: scroll;
 }
 
 .active-link {
