@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './Header.jsx';
+import Header from './componenets/Header.jsx';
 import {createRoot} from 'react-dom/client';
 
 const App = () => {
