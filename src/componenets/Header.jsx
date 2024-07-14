@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const Header = () => {
   return (
@@ -35,7 +36,7 @@ const Header = () => {
               {/*Navigation*/}
               <nav>
                   <ul>
-                      <li><a href="#">Inbox</a></li>
+                      <li><Link to="/">All Call</Link></li>
                       <li><a href="#">Archived Call</a></li>
                   </ul>
               </nav>

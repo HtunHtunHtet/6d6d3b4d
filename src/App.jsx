@@ -1,15 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Header from './componenets/Header.jsx';
-import {createRoot} from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Header from './componenets/Header';
+import { createRoot } from 'react-dom/client';
+import AllCall from "./componenets/AllCall";
 
 const App = () => {
-  return (
-    <div className='container'>
-      <Header/>
-      <div className="container-view">Some actvities should be here</div>
-    </div>
-  );
+    return (
+        <Router>
+            <div className='container'>
+                <Header/>
+                <Routes>
+                    <Route path="/" element={<AllCall/>} />
+                </Routes>
+            </div>
+        </Router>
+    );
 };
 
 const container = document.getElementById('app');
