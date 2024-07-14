@@ -1,7 +1,7 @@
 import React from 'react';
-import { BiPhoneIncoming, BiPhoneOutgoing, BiArchiveIn } from "react-icons/bi";
+import { BiPhoneIncoming, BiPhoneOutgoing } from "react-icons/bi";
 
-const CallCard = ({ call, onSelect, onSelectArchive }) => {
+const CallCard = ({ call, onSelect, onSelectArchive, children }) => {
     return (
         <div key={call.id} className="card">
             <div className="card-body" onClick={() => onSelect(call)}>
@@ -25,7 +25,7 @@ const CallCard = ({ call, onSelect, onSelectArchive }) => {
             </div>
 
             <div className="archive-btn" onClick={() => onSelectArchive(call)}>
-                <BiArchiveIn size="1.5em" />
+                {children}
             </div>
         </div>
     );

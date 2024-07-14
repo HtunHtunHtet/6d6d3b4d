@@ -37,7 +37,7 @@ const Header = () => {
               <nav>
                   <ul>
                       <li><Link to="/">All Call</Link></li>
-                      <li><a href="#">Archived Call</a></li>
+                      <li><Link to="/archived-call">Archived Call</Link></li>
                   </ul>
               </nav>
           </div>

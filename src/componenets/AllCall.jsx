@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Loading from "../Loading";
+import Loading from "./Loading";
 import CallCard from "./CallCard";
-import {fetchAllCalls} from "../../api";
-import DetailModal from "../Modal/DetailModal";
-import ArchiveModal from "../Modal/ArchiveModal";
+import {fetchAllCalls} from "../api";
+import DetailModal from "./Modal/DetailModal";
+import ArchiveModal from "./Modal/ArchiveModal";
 import toast, { Toaster } from 'react-hot-toast';
+import {BiArchiveIn} from "react-icons/bi";
 
 const AllCall = () => {
 
@@ -32,8 +33,9 @@ const AllCall = () => {
     };
 
     const handleCloseArchiveModal = () => {
-      setArchiveModal(false);
+        setArchiveModal(false);
         toast.success('Call archived successfully!');
+        fetchAllCalls().then(data => setAllCall(data));
     };
 
     return (
@@ -50,7 +52,9 @@ const AllCall = () => {
                                             call={call}
                                             onSelect={() => handleDetailModal(call)}
                                             onSelectArchive={() => handleArchiveModal(call)}
-                                        />
+                                        >
+                                            <BiArchiveIn size="1.5em" />
+                                        </CallCard>
                                     ))
                                 }
                             </div>
@@ -73,6 +77,7 @@ const AllCall = () => {
                     isVisible={archiveModal}
                     onClose={handleCloseArchiveModal}
                     call={selectedCall}
+                    isArchive={true}
                 />
             )}
 

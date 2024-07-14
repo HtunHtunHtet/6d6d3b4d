@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './componenets/Header';
 import { createRoot } from 'react-dom/client';
-import AllCall from "./componenets/AllCall/AllCall";
+import AllCall from "./componenets/AllCall";
+import ArchivedCall from "./componenets/ArchivedCall";
 
 const App = () => {
     return (
@@ -11,6 +12,7 @@ const App = () => {
                 <Header/>
                 <Routes>
                     <Route path="/" element={<AllCall/>} />
+                    <Route path="/archived-call" element={<ArchivedCall/>} />
                 </Routes>
             </div>
         </Router>

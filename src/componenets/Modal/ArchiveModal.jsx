@@ -2,10 +2,10 @@ import React from 'react';
 import Modal from "./Modal";
 import {updateCallArchive} from "../../api";
 
-const ArchiveModal = ({ isVisible, onClose, call }) => {
+const ArchiveModal = ({ isVisible, onClose, call, isArchive }) => {
 
-    const handleArchiveCall = () => {
-        updateCallArchive(call.id, true).then((data) => {
+    const handleArchiveCall = (flag) => {
+        updateCallArchive(call.id, flag).then((data) => {
             onClose();
         });
     }
@@ -13,11 +13,11 @@ const ArchiveModal = ({ isVisible, onClose, call }) => {
     return (
         <Modal isVisible={isVisible} onClose={onClose}>
             <div className="modal-content">
-                <p> Are you sure you want to archive this call?</p>
+                <p> Are you sure you want to {isArchive ? 'archive' : 'unarchived'} this call?</p>
                 <div className="button-container">
                     <a href="#" className="cancel-btn" onClick={onClose}>Cancel</a>
-                    <a href="#" className="process-btn" onClick={handleArchiveCall}>Archive</a>
-                </div>
+                    <a href="#" className="process-btn"
+                       onClick={() => handleArchiveCall(isArchive)}>{isArchive ? 'Archive' : 'Unarchive'}</a></div>
             </div>
         </Modal>
     );
