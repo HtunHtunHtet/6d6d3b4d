@@ -21,6 +21,7 @@
 
 #app .container-view {
   padding: 20px;
+  height: 40em;
 }
 
 .active-link {

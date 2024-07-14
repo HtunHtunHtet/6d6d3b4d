@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './componenets/Header/Header';
 import { createRoot } from 'react-dom/client';
-import AllCall from "./componenets/AllCall";
+import Calls from "./componenets/Calls";
 import ArchivedCall from "./componenets/ArchivedCall";
+import Footer from "./componenets/Footer";
 
 const App = () => {
     return (
@@ -11,9 +12,10 @@ const App = () => {
             <div className='container'>
                 <Header/>
                 <Routes>
-                    <Route path="/" element={<AllCall/>} />
+                    <Route path="/" element={<Calls/>} />
                     <Route path="/archived-call" element={<ArchivedCall/>} />
                 </Routes>
+                <Footer/>
             </div>
         </Router>
     );

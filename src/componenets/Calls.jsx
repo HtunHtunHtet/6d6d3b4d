@@ -1,10 +1,10 @@
 import React from 'react';
 import CallList from "./CallList";
 
-const AllCall = () => {
+const Calls = () => {
     return (
        <CallList showArchived={false} />
     );
 }
 
-export default AllCall;
+export default Calls;

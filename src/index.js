@@ -4,6 +4,7 @@ import './css/header.css';
 import './css/card.css';
 import './css/modal.css';
 import './css/button.css';
+import './css/footer.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import App from './App.jsx';

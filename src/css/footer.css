@@ -1,0 +1,14 @@
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f0f0f0;
+}
+
+.icon {
+    cursor: pointer;
+    padding:20px;
+}
+
+.footer-container .icon:hover {
+    background-color: rgba(128, 128, 128, 0.87);
+}
