@@ -1,19 +1,19 @@
 const BASE_URL = 'https://aircall-backend.onrender.com';
 
-export const fetchAllCalls = () => {
-    return fetch(`${BASE_URL}/activities`)
+export const fetchAllCalls = async () => {
+    return await fetch(`${BASE_URL}/activities`)
         .then(response => response.json())
         .catch(error => console.error('Error fetching data:', error));
 };
 
-export const fetchCall = (call_id) => {
-    return fetch(`${BASE_URL}/activities/${call_id}`)
+export const fetchCall = async (call_id) => {
+    return await fetch(`${BASE_URL}/activities/${call_id}`)
         .then(response => response.json())
         .catch(error => console.error('Error fetching data:', error));
 };
 
-export const updateCallArchive = (call_id, is_archive ) => {
-    return fetch(`${BASE_URL}/activities/${call_id}`, {
+export const updateCallArchive = async (call_id, is_archive ) => {
+    return await fetch(`${BASE_URL}/activities/${call_id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -27,8 +27,8 @@ export const updateCallArchive = (call_id, is_archive ) => {
 }
 
 //reset to unarchive all calls
-export const resetAllCall = () => {
-    return fetch(`${BASE_URL}/reset`, {
+export const resetAllCall = async () => {
+    return await fetch(`${BASE_URL}/reset`, {
         method: 'PATCH',
     })
         .then(response => response)
