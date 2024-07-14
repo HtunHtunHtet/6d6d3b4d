@@ -1,10 +1,10 @@
 import React from 'react';
-import { BiPhoneIncoming, BiPhoneOutgoing } from "react-icons/bi";
+import { BiPhoneIncoming, BiPhoneOutgoing, BiArchiveIn } from "react-icons/bi";
 
-const CallCard = ({ call, onSelect }) => {
+const CallCard = ({ call, onSelect, onSelectArchive }) => {
     return (
-        <div key={call.id} className="card" onClick={() => onSelect(call)}>
-            <div className="card-body">
+        <div key={call.id} className="card">
+            <div className="card-body" onClick={() => onSelect(call)}>
                 <div>
                     {call.direction === 'inbound' && <BiPhoneIncoming color='red' size="2em"/>}
                     {call.direction === 'outbound' && <BiPhoneOutgoing color='green' size="2em"/>}
@@ -22,6 +22,10 @@ const CallCard = ({ call, onSelect }) => {
                         hour12: true
                     })}
                 </p>
+            </div>
+
+            <div className="archive-btn" onClick={() => onSelectArchive(call)}>
+                <BiArchiveIn size="1.5em" />
             </div>
         </div>
     );

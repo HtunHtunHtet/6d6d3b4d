@@ -20,7 +20,7 @@
     justify-content: space-between;
 }
 
-.card:hover {
+.card-body:hover {
     cursor: pointer;
     background-color: lightgray;
 }
@@ -28,12 +28,28 @@
 .card {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
-    padding: 0 10px 0 10px;
     width: 100%;
+    display: flex;
 }
 
 .card-body {
     display:flex;
+    flex: 80%;
     justify-content: space-between;
     padding: 10px;
+}
+
+.archive-btn {
+    flex: 20%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.82);
+    color: white;
+}
+
+.archive-btn:hover {
+    cursor: pointer;
+    background-color: black;
 }
