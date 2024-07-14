@@ -1,9 +1,9 @@
 import React from 'react';
 import { BiPhoneIncoming, BiPhoneOutgoing } from "react-icons/bi";
 
-const CallCard = ({ call }) => {
+const CallCard = ({ call, onSelect }) => {
     return (
-        <div key={call.id} className="card">
+        <div key={call.id} className="card" onClick={() => onSelect(call)}>
             <div className="card-body">
                 <div>
                     {call.direction === 'inbound' && <BiPhoneIncoming color='red' size="2em"/>}

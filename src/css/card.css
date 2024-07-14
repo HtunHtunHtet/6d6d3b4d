@@ -20,6 +20,11 @@
     justify-content: space-between;
 }
 
+.card:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
 .card {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
