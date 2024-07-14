@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './componenets/Header';
 import { createRoot } from 'react-dom/client';
-import AllCall from "./componenets/AllCall";
+import AllCall from "./componenets/AllCall/AllCall";
 
 const App = () => {
     return (
