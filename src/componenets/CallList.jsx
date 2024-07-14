@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Loading from "./Loading";
 import CallCard from "./CallCard";
 import { fetchAllCalls } from "../api";
-import toast, { Toaster } from 'react-hot-toast';
 import {BiArchiveIn, BiArchiveOut} from "react-icons/bi";
 import ArchiveModal from "./Modal/ArchiveModal";
 import DetailModal from "./Modal/DetailModal";
@@ -36,7 +35,6 @@ const CallList = ({ showArchived }) => {
 
     const handleCloseArchiveModal = () => {
         setArchiveModal(false);
-        toast.success(`Call ${showArchived ? 'Unarchived' : 'Archived'} successfully!`);
         fetchAllCalls().then(data => {
             const filteredCalls = showArchived ? data.filter(call => call.is_archived) : data.filter(call => !call.is_archived);
             setCalls(filteredCalls);
@@ -78,7 +76,6 @@ const CallList = ({ showArchived }) => {
                     isArchive={!showArchived}
                 />
             )}
-            <Toaster position="top-center" />
         </div>
     );
 };
